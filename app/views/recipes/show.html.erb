@@ -1,0 +1,25 @@
+<%= render "shared/page_title", title: @recipe.name %>
+<hr />
+
+<div class="col-md-8 well col-md-offset-2">
+  <h4 class="center description"><strong>Description</strong></h4>
+  <hr />
+  <%= simple_format(@recipe.description) %>
+
+  <div class="pull-right">
+    <p class="center">
+      Created by:
+    </p>
+    <p class="center">
+      <%= gravatar(@recipe.chef)%>
+    </p>
+    <p class="center"><small><%= @recipe.chef.name %></small></p>
+    <p>
+      <span class="quite"><small>Created <%= time_ago_in_words(@recipe.created_at)%> ago</small></span>
+    </p>
+  </div>
+  <p>
+
+  </p>
+
+</div>
