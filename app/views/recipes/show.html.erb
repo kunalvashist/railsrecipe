@@ -6,6 +6,9 @@
   <hr />
   <%= simple_format(@recipe.description) %>
 
+  <%= link_to "Edit The Recipe", edit_recipe_path, class:"btn btn-xs btn-warning"%>
+  <%= link_to "Delete The Recipe", recipe_path(@recipe), method: :delete, data:{ confirm:"Are you certain you want to delete this recipe"}, class:"btn btn-xs btn-danger"%>
+
   <div class="pull-right">
     <p class="center">
       Created by:
