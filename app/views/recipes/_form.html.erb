@@ -1,0 +1,23 @@
+<%= render "shared/errors_form", obj: @recipe %>
+<div class="row">
+  <div class="col-md-12">
+  <%= form_for(@recipe, :html => {class: "form-horizontal", role:"form"}) do |f| %>
+    <div class="form-group">
+      <label for="exampleFormControlInput1">
+        <%= f.label :name %>
+      </label>
+      <%= f.text_field :name, class: "form-control", placeholder: "Recipe Name" , autofocus: true %>
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1"<%= f.label :description %></label>
+      <%= f.text_area :description, class: "form-control",rows: 10, placeholder: "How to make it?"%>
+    </div>
+    <div class="form-group">
+      <%= f.submit class:"btn btn-primary" %>
+    </div>
+  <% end %>
+    <div class="col-md-4 col-md-offset-4">
+       [ <%= link_to "Cancel and Return to Recipe Lists", recipes_path %> ]
+    </div>
+  </div>
+</div>
