@@ -1,5 +1,10 @@
 <%= render "shared/page_title", title: "Select Recipe"%>
 <hr />
 
+<div align="center">
+  <%= will_paginate @recipe %>
+</div>
 <%= render "recipes/recipes", obj: @recipe %>
-
+<div align="center">
+  <%= will_paginate @recipe %>
+</div>

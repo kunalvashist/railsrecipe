@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.4.6'
 
+gem 'will_paginate', '~> 3.1.0'
+
 gem 'rails-controller-testing', '~> 0.0.3'
 #Bootstrap Sass
 gem 'bootstrap-sass', '~> 3.4.1'
