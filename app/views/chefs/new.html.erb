@@ -1,0 +1,37 @@
+<%= render "shared/page_title", title: "Sign up for the registration" %>
+
+<%= render "shared/errors_form", obj: @chef %>
+<div class="row">
+  <div class="col-md-12">
+    <%= form_for(@chef, :html => {class: "form-horizontal", role:"form"}) do |f| %>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">
+          <%= f.label :name %>
+        </label>
+        <%= f.text_field :name, class: "form-control", placeholder: "Enter Your Name" , autofocus: true %>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1"<%= f.label :email %></label>
+        <%= f.email_field :email, class: "form-control", placeholder: "Enter Your Email"%>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlpassword"<%= f.label :password %></label>
+        <%= f.password_field :password, class: "form-control", placeholder: "Choose Your password"%>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlpassword"<%= f.label :password_confirmation, "Confirm Password" %></label>
+        <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Confirm Password"%>
+      </div>
+
+
+      <div class="form-group">
+        <%= f.submit "Create My Account", class:"btn btn-primary" %>
+      </div>
+
+    <% end %>
+    <div class="col-md-4 col-md-offset-4">
+      [ <%= link_to "Cancel and Return to Recipe Lists", recipes_path %> ]
+    </div>
+  </div>
+</div>
+
