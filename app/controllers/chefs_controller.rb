@@ -11,6 +11,21 @@ class ChefsController < ApplicationController
     @chef = Chef.new
   end
 
+  def edit
+    @chef = Chef.find(params[:id])
+  end
+
+  def update
+    @chef = Chef.find(params[:id])
+
+    if @chef.update(chef_params)
+      flash[:success] = "Updated Successfully"
+      redirect_to @chef
+    else
+      render "edit"
+    end
+  end
+
   def create
     @chef = Chef.new(chef_params)
     if @chef.save
