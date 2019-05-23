@@ -1,11 +1,12 @@
 class ChefsController < ApplicationController
+
+  before_action :set_chef, only: [:show,:edit,:update,:delete]
+
   def index
     @chefs = Chef.paginate(page: params[:page], per_page: 1)
-
   end
 
   def show
-    @chef = Chef.find(params[:id])
     @chef_recipes = @chef.recipes.paginate(page: params[:page], per_page:1)
   end
 
@@ -14,12 +15,9 @@ class ChefsController < ApplicationController
   end
 
   def edit
-    @chef = Chef.find(params[:id])
   end
 
   def update
-    @chef = Chef.find(params[:id])
-
     if @chef.update(chef_params)
       flash[:success] = "Updated Successfully"
       redirect_to @chef
@@ -28,9 +26,16 @@ class ChefsController < ApplicationController
     end
   end
 
+  def destroy
+    @chef.destroy
+    flash[:danger] = " Deleted Successfully"
+    redirect_to @chef
+  end
+
   def create
     @chef = Chef.new(chef_params)
     if @chef.save
+      session[:chef_id] = @chef_id
       flash[:success] = "Created Successfully"
       redirect_to chef_path(@chef)
     else
@@ -39,6 +44,10 @@ class ChefsController < ApplicationController
   end
 
   private
+  def set_chef
+    @chef = Chef.find(params[:id])
+  end
+
   def chef_params
     params.require(:chef).permit(:name, :email, :password, :password_confirmation)
   end
