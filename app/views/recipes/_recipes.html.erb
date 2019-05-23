@@ -14,7 +14,7 @@
       <p>
         <span class="quite"><small>Created <%= time_ago_in_words(r.created_at)%> ago</small></span>
       </p>
-      <% if loggedin? && current_chef == r.chef %>
+      <% if loggedin? && (current_chef == r.chef || current_chef.admin?) %>
         <div class="recipe-actions">
           <%= link_to "Edit The Recipe", edit_recipe_path(r), class:"btn btn-xs btn-warning"%>
           <%= link_to "Delete The Recipe", recipe_path(r), method: :delete, data:{ confirm:"Are you certain you want to delete this recipe"}, class:"btn btn-xs btn-danger"%>

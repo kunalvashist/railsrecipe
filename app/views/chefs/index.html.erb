@@ -15,10 +15,12 @@
           <li>
             <small><%= pluralize(chef.recipes.count,"recipe") if chef.recipes %></small>
           </li>
+         <% if loggedin? && current_chef.admin? && !chef.admin? %>
           <li>
             <%= link_to "Delete this chef", chef_path(chef), method: :delete, data: {confirm:"Are you certain you want to delete all cehf and recipe"}  %>
           </li>
-        </div>
+          <% end %>
+         </div>
       </div>
     </ul>
   <% end %>
