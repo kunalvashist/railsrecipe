@@ -6,7 +6,7 @@ class ChefsShowTest < ActionDispatch::IntegrationTest
   # end
 
   def setup
-    @chef = Chef.create!(name:"kunal",email:"kunal@yopmail.com",
+    @chef = Chef.create(name:"kunal",email:"kunal@yopmail.com",
                          password:"password",password_confirmation:"password")
     @recipe = Recipe.create(name:"Lemon Soda",description:"Add Lemon with salh in soda",chef:@chef)
     @recipe2 = @chef.recipes.build(name:"Watermellon",description:"Just Eat")

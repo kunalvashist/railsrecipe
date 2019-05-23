@@ -1,6 +1,7 @@
 class ChefsController < ApplicationController
 
-  before_action :set_chef, only: [:show,:edit,:update,:delete]
+  before_action :set_chef, only: [:show,:edit,:update,:destroy]
+  before_action :require_some_user, only: [:edit,:update,:destroy]
 
   def index
     @chefs = Chef.paginate(page: params[:page], per_page: 1)
@@ -50,5 +51,12 @@ class ChefsController < ApplicationController
 
   def chef_params
     params.require(:chef).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def require_some_user
+    if current_chef != @chef
+      flash[:danger] = "You need to login with your id"
+      redirect_to chefs_path
+    end
   end
 end

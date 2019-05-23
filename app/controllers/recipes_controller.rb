@@ -1,6 +1,8 @@
 class RecipesController < ApplicationController
 
-  before_action :set_recipe, only: [:show,:edit,:update]
+  before_action :set_recipe, only: [:show,:edit,:update,:destroy]
+  before_action :require_user, expect: [:index,:show]
+  before_action :require_some_user, only: [:edit,:update,:destroy]
 
   def index
     @recipe = Recipe.paginate(page: params[:page], per_page: 1)
@@ -53,6 +55,13 @@ class RecipesController < ApplicationController
 
   def gotoParam
     params.require(:recipe).permit(:name, :description)
+  end
+
+  def require_some_user
+    if current_chef != @recipe.chef
+      flash[:danger] = "You can only perform action on recipes added by you"
+      redirect_to recipes_path
+    end
   end
 
 end

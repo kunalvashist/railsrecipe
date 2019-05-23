@@ -6,7 +6,7 @@ class ChefEditTest < ActionDispatch::IntegrationTest
   # end
   #
   def setup
-    @chef = Chef.create!(name:"kunal",email:"kunal@yopmail.com",
+    @chef = Chef.create(name:"kunal",email:"kunal@yopmail.com",
                          password:"password",password_confirmation:"password")
   end
 
